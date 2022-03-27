@@ -151,6 +151,7 @@ Pytest identifies functions whose names are starting with <span style="color:gre
   ---
 
 - **Stopping file after n fails**
+  
   If N number of test fails then pytest stops the execution
   ```bash
   pytest test_demo_2.py -v --maxfail 3
