@@ -27,13 +27,11 @@
 
 - **Test with substring**
   ```bash
-  pytest -k <substring>
   pytest -k 'fun' -v test_demo_2.py
   ```
 
 - **Test with multiple substring**
   ```bash
-  pytest -k <substring or substring>
   pytest -k 'fun or sum' -v
   pytest -k 'fun and sum' -v
   pytest -k 'not fun' -v
@@ -59,13 +57,12 @@
 
   ---
 
-
 - **Test with Fixtures**
   
   ```python
   import pytest
 
-  @pytest.fixture
+  @pytest.fixture(scope="function")
   def func():
       i =20
       return i
@@ -82,6 +79,8 @@
   - `module`: the fixture is destroyed during teardown of the last test in the module.
   - `package`: the fixture is destroyed during teardown of the last test in the package.
   - `session`: the fixture is destroyed at the end of the test session.
+
+  Also we can `autouse = True` if we want to run the fixture before every test.
   
   ---
 
@@ -105,6 +104,20 @@
   
   ```bash
   pytest -k 'sum' -v test_demo_fixtures.py
+  ```
+
+- **Skip Tests**
+
+  ```python
+  import pytest
+
+  @pytest.mark.skip("This is a reason for skipping the test")
+  def func():
+      pass
+  ```
+  
+  ```bash
+  pytest -sv test_demo_fixtures.py
   ```
 
 - **Stopping file after n fails**
