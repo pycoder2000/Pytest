@@ -51,9 +51,9 @@
 
   ---
   > **_NOTE:_**
-  Both Markers and Substrings are used to run group selective tests.
-  If we are willing to change the name of the tests then we can use `-k <substring>`.
-  If not then we can use markers as `-m`.
+  > - Both Markers and Substrings are used to run group selective tests.
+  > - If we are willing to change the name of the tests then we can use `-k <substring>`.
+  > - If not then we can use markers as `-m`.
 
   ---
 
@@ -86,9 +86,9 @@
 
   ---
   > **_NOTE:_**
-  Fixture has scope only within a test file where it is defined.
-  To make a fixture available to multiple test files, we have to define the fixture function in a file called [conftest.py](./fixture/conftest.py)
-  Pytest will look for the fixture function in the test file and if not found it will look in the [conftest.py](./fixture/conftest.py) file.
+  > - Fixture has scope only within a test file where it is defined.
+  > - To make a fixture available to multiple test files, we have to define the fixture function in a file called [conftest.py](./fixture/conftest.py)
+  > - Pytest will look for the fixture function in the test file and if not found it will look in the [conftest.py](./fixture/conftest.py) file.
   
   ---
 
@@ -115,10 +115,36 @@
   def func():
       pass
   ```
+
+  > We can also provide conditions to skip the test.
+  ```python
+  @pytest.mark.skipif(condition,reason = "This is a reason for skipping the test")
+  ```
   
   ```bash
-  pytest -sv test_demo_fixtures.py
+  pytest -sv
   ```
+
+- **xfail Tests**
+
+  ```python
+  import pytest
+
+  @pytest.mark.xfail
+  def func():
+      pass
+  ```
+  
+  ```bash
+  pytest -sv
+  ```
+
+  ---
+  > **_NOTE:_**
+  > - There are used in cases where the test cases are not relevant for a specific period of time.
+  > - The xfail tests will be executed, but will not counted as failed or passed tests.
+
+  ---
 
 - **Stopping file after n fails**
   ```bash
