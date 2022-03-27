@@ -1,5 +1,9 @@
 ## COMMANDS
 
+Pytest identifies files whose names start with <span style="color:green"><b><i>test_</i></b></span> or ending with <span style="color:green"><b><i>_test</i></b></span> as the test files.
+
+Pytest identifies functions whose names are starting with <span style="color:green"><b><i>test</i></b></span> as test functions.
+
 - **Normal Command Test**
 
   ```bash
@@ -116,7 +120,7 @@
       pass
   ```
 
-  > We can also provide conditions to skip the test.
+  We can also provide conditions to skip the test.
   ```python
   @pytest.mark.skipif(condition,reason = "This is a reason for skipping the test")
   ```
@@ -147,6 +151,32 @@
   ---
 
 - **Stopping file after n fails**
+  If N number of test fails then pytest stops the execution
   ```bash
   pytest test_demo_2.py -v --maxfail 3
+  ```
+
+- **Running pytest in parallel**
+  ```bash
+  pip install pytest-xdist
+  ```
+  
+  To run the tests in parallel
+  ```bash
+  pytest -n 2
+  ```
+
+  Here -n specifices the number of workers to run the tests.
+
+  To view the logs add `sys.stdout = sys.stderr` at the top of the file.
+
+- **Save pytest results**
+  To get results in XML format, we have to use
+  ```bash
+  pytest --junitxml="results.xml"
+  ```
+  To get results in HTML format, we have to use
+  ```bash
+  pip install pytest-html
+  pytest --html="results.html"
   ```
